@@ -5,17 +5,14 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_jobapp"
-            android:icon="@drawable/job"
-            android:title="@string/menu_jobapp" />
+            android:id="@+id/nav_students"
+            android:title="Estudiantes" />
         <item
             android:id="@+id/nav_list"
-            android:icon="@drawable/list"
-            android:title="@string/menu_listjob" />
+            android:title="Cursos" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/log"
-            android:title="@string/menu_logout" />
+            android:title="Log out" />
 
 
     </group>

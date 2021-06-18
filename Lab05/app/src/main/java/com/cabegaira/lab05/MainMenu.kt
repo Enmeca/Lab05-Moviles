@@ -21,7 +21,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +47,7 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
+        /*when (item.itemId){
             R.id.nav_jobapp -> {
                 Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, ApplicationActivity::class.java)
@@ -64,7 +64,7 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
                 startActivity(i)
                 finish()
             }
-        }
+        }*/
         return true
     }
 }

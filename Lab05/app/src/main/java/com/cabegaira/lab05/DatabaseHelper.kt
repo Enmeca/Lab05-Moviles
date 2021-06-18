@@ -6,32 +6,30 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 
-/**
- * Let's start by creating our database CRUD helper class
- * based on the SQLiteHelper.
- */
+
 class DatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, 1) {
 
-    /**
-     * Our onCreate() method.
-     * Called when the database is created for the first time. This is
-     * where the creation of tables and the initial population of the tables
-     * should happen.
-     */
+
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL("CREATE TABLE $TABLE_NAME (ID INTEGER PRIMARY KEY " +
-                "AUTOINCREMENT,NAME TEXT,GALAXY TEXT,TYPE TEXT)")
+        db.execSQL("CREATE TABLE $TABLE_STUDENT (ID_STUDENT INTEGER PRIMARY KEY " +
+                "AUTOINCREMENT,NAME TEXT,LASTNAME TEXT,AGE NUMERIC)")
+
+        db.execSQL("CREATE TABLE $TABLE_COURSE (ID_COURSE INTEGER PRIMARY KEY " +
+                "AUTOINCREMENT,DESCRIPTION TEXT, CREDITS NUMERIC)")
+
+        db.execSQL("CREATE TABLE $TABLE_ENROLLMENT (ID_ENROLLMENT INTEGER PRIMARY KEY " +
+                "AUTOINCREMENT,FK_ID_STUDENT INTEGER, FK_ID_COURSE INTEGER," +
+                "FOREIGN KEY(FK_ID_STUDENT) REFERENCES $TABLE_STUDENT(ID_STUDENT)" +
+                "FOREIGN KEY(FK_ID_COURSE) REFERENCES $TABLE_COURSE(ID_COURSE))")
     }
 
-    /**
-     * Let's create Our onUpgrade method
-     * Called when the database needs to be upgraded. The implementation should
-     * use this method to drop tables, add tables, or do anything else it needs
-     * to upgrade to the new schema version.
-     */
+
+
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME)
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STUDENT)
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_COURSE)
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ENROLLMENT)
         onCreate(db)
     }
 
@@ -42,10 +40,10 @@ class DatabaseHelper(context: Context) :
     fun insertData(name: String, surname: String, marks: String) {
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(COL_2, name)
-        contentValues.put(COL_3, surname)
-        contentValues.put(COL_4, marks)
-        db.insert(TABLE_NAME, null, contentValues)
+        contentValues.put(NAME, name)
+        contentValues.put(LASTNAME, surname)
+        contentValues.put(AGE, marks)
+        db.insert(TABLE_STUDENT, null, contentValues)
     }
 
     /**
@@ -55,11 +53,11 @@ class DatabaseHelper(context: Context) :
             Boolean {
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(COL_1, id)
-        contentValues.put(COL_2, name)
-        contentValues.put(COL_3, surname)
-        contentValues.put(COL_4, marks)
-        db.update(TABLE_NAME, contentValues, "ID = ?", arrayOf(id))
+        contentValues.put(ID_STUDENTS, id)
+        contentValues.put(NAME, name)
+        contentValues.put(LASTNAME, surname)
+        contentValues.put(AGE, marks)
+        db.update(TABLE_STUDENT, contentValues, "ID = ?", arrayOf(id))
         return true
     }
 
@@ -68,7 +66,7 @@ class DatabaseHelper(context: Context) :
      */
     fun deleteData(id : String) : Int {
         val db = this.writableDatabase
-        return db.delete(TABLE_NAME,"ID = ?", arrayOf(id))
+        return db.delete(TABLE_STUDENT,"ID = ?", arrayOf(id))
     }
 
     /**
@@ -77,7 +75,7 @@ class DatabaseHelper(context: Context) :
     val allData : Cursor
         get() {
             val db = this.writableDatabase
-            val res = db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
+            val res = db.rawQuery("SELECT * FROM " + TABLE_STUDENT, null)
             return res
         }
 
@@ -87,7 +85,7 @@ class DatabaseHelper(context: Context) :
     fun findById(id : String) : Cursor
     {
         val db = this.writableDatabase
-        val res = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE ID=?", arrayOf(id))
+        val res = db.rawQuery("SELECT * FROM " + TABLE_STUDENT + " WHERE ID=?", arrayOf(id))
         return res
     }
 
@@ -98,11 +96,20 @@ class DatabaseHelper(context: Context) :
      */
     companion object {
         val DATABASE_NAME = "stars.db"
-        val TABLE_NAME = "star_table"
-        val COL_1 = "ID"
-        val COL_2 = "NAME"
-        val COL_3 = "GALAXY"
-        val COL_4 = "TYPE"
+        val TABLE_STUDENT = "TABLE_STUDENTS"
+        val ID_STUDENTS = "ID"
+        val NAME = "NAME"
+        val LASTNAME = "LASTNAME"
+        val AGE = "AGE"
+        val TABLE_COURSE= "TABLE_COURSE"
+        val ID_COURSE = "COURSE"
+        val DESCRIPTION = "DESCRIPTION"
+        val CREDITS = "CREDITS"
+        val TABLE_ENROLLMENT= "TABLE_ENROLLMENT"
+        val ID_ENROLLMENT = "ID_ENROLLMENT"
+        val FK_ID_STUDENT = "FK_ID_STUDENT"
+        val FK_ID_COURSE = "FK_ID_COURSE"
+
     }
 }
 //end
