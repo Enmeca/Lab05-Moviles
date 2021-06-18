@@ -141,6 +141,10 @@ class DatabaseHelper(context: Context) :
         return db.delete(TABLE_COURSE,"COURSE = ?", arrayOf(id))
     }
 
+    fun deleteStudent(id : String) : Int {
+        val db = this.writableDatabase
+        return db.delete(TABLE_STUDENT,"ID_STUDENT = ?", arrayOf(id))
+    }
 
     val allCourses : Cursor
         get() {

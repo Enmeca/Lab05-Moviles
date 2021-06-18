@@ -28,6 +28,7 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
     lateinit var adapter : RecyclerView_Adapter_Students
     private var btn : Button? = null
     lateinit var student:Students
+    internal var dbHelper = DatabaseHelper(this)
     var position: Int = 0
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
@@ -79,9 +80,6 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
                     deleteStudent(student.id)
                     list.adapter?.notifyItemRemoved(position)
 
-                    Snackbar.make(list, student.name + "Se eliminaría... ", Snackbar.LENGTH_LONG).setAction("Undo") {
-                        list.adapter?.notifyItemInserted(position)
-                    }.show()
                     adapter = RecyclerView_Adapter_Students(studentsList)
                     list.adapter = adapter
                     adapter.notifyDataSetChanged()
@@ -166,7 +164,15 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
     }
 
-    fun deleteStudent(id :Int){}
+    fun deleteStudent(id :Int){
 
+        try {
+            dbHelper.deleteStudent(id.toString())
+            listStudents()
+        }catch (e: Exception){
+            e.printStackTrace()
+            //showToast(e.message.toString())
+        }
+    }
 
 }
