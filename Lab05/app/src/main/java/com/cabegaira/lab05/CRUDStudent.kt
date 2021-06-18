@@ -1,9 +1,12 @@
 package com.cabegaira.lab05
 
+import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
@@ -27,14 +30,47 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
         navView.setNavigationItemSelectedListener(this)
 
+        findViewById<SearchView>(R.id.student_search).setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return false
+            }
+        })
 
         listStudents()
     }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.nav_students -> {
+                Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, CRUDStudent::class.java)
+                startActivity(i)
+            }
+            R.id.nav_courses -> {
+                Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, CRUDStudent::class.java)
+                startActivity(i)
+            }
+            R.id.nav_logout -> {
+                Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, Login::class.java)
+                startActivity(i)
+                finish()
+            }
+        }
+        return true
+    }
+
     fun listStudents(){
 
         db = DatabaseHelper(this)
 
-        var studentsCursor : Cursor? = db!!.getQuery("SELECT * from TABLE_STUDENT")
+        var studentsCursor : Cursor? = db!!.getQuery("SELECT * from TABLE_STUDENTS")
         var studentsSize : Int = studentsCursor!!.count
 
 
@@ -55,7 +91,5 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        TODO("Not yet implemented")
-    }
+
 }
