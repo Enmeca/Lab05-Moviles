@@ -15,8 +15,8 @@ class DatabaseHelper(context: Context) :
         db.execSQL("CREATE TABLE $TABLE_STUDENT (ID_STUDENT INTEGER PRIMARY KEY " +
                 "AUTOINCREMENT,NAME TEXT,LASTNAME TEXT,AGE NUMERIC)")
 
-        db.execSQL("CREATE TABLE $TABLE_COURSE ($ID_COURSE INTEGER PRIMARY KEY " +
-                "AUTOINCREMENT,$DESCRIPTION TEXT, $CREDITS NUMERIC)")
+        db.execSQL("CREATE TABLE $TABLE_COURSE (ID_COURSE INTEGER PRIMARY KEY " +
+                "AUTOINCREMENT,DESCRIPTION TEXT, CREDITS NUMERIC)")
 
         db.execSQL("CREATE TABLE $TABLE_ENROLLMENT (ID_ENROLLMENT INTEGER PRIMARY KEY " +
                 "AUTOINCREMENT,FK_ID_STUDENT INTEGER, FK_ID_COURSE INTEGER," +
@@ -116,7 +116,7 @@ class DatabaseHelper(context: Context) :
     fun insertCourse(id: Int, desc: String, cred: Int) {
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(ID_COURSE, id)
+       // contentValues.put(ID_COURSE, id)
         contentValues.put(DESCRIPTION, desc)
         contentValues.put(CREDITS, cred)
         db.insert(TABLE_COURSE, null, contentValues)
@@ -131,19 +131,19 @@ class DatabaseHelper(context: Context) :
         contentValues.put(DESCRIPTION, desc)
         contentValues.put(CREDITS, cred)
 
-        db.update(TABLE_COURSE, contentValues, "COURSE = ?", arrayOf(id.toString()))
+        db.update(TABLE_COURSE, contentValues, "ID_COURSE=?", arrayOf(id.toString()))
         return true
     }
 
 
     fun deleteCourse(id : String) : Int {
         val db = this.writableDatabase
-        return db.delete(TABLE_COURSE,"COURSE = ?", arrayOf(id))
+        return db.delete(TABLE_COURSE,"ID_COURSE=?", arrayOf(id))
     }
 
     fun deleteStudent(id : String) : Int {
         val db = this.writableDatabase
-        return db.delete(TABLE_STUDENT,"ID_STUDENT = ?", arrayOf(id))
+        return db.delete(TABLE_STUDENT,"ID_STUDENT=?", arrayOf(id))
     }
 
     val allCourses : Cursor
@@ -157,7 +157,7 @@ class DatabaseHelper(context: Context) :
     fun findByIdCourse(id : String) : Cursor
     {
         val db = this.writableDatabase
-        val res = db.rawQuery("SELECT * FROM " + TABLE_COURSE + " WHERE COURSE = ?", arrayOf(id))
+        val res = db.rawQuery("SELECT * FROM " + TABLE_COURSE + " WHERE ID_COURSE = ?", arrayOf(id))
         return res
     }
 
@@ -171,7 +171,7 @@ class DatabaseHelper(context: Context) :
         val LASTNAME = "LASTNAME"
         val AGE = "AGE"
         val TABLE_COURSE= "TABLE_COURSE"
-        val ID_COURSE = "COURSE"
+        val ID_COURSE = "ID_COURSE"
         val DESCRIPTION = "DESCRIPTION"
         val CREDITS = "CREDITS"
         val TABLE_ENROLLMENT= "TABLE_ENROLLMENT"
