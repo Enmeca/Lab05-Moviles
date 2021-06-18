@@ -89,6 +89,13 @@ class DatabaseHelper(context: Context) :
         return res
     }
 
+    fun getQuery(query : String?): Cursor {
+        val db = this.writableDatabase
+        var mCursor : Cursor = db.rawQuery(query, null)
+        mCursor?.moveToFirst()
+        return mCursor
+    }
+
     /**
      * Let's create a companion object to hold our static fields.
      * A Companion object is an object that is common to all instances of a given
