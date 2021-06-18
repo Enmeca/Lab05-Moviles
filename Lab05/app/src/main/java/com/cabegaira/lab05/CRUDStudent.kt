@@ -72,12 +72,11 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
 
                 position = viewHolder.adapterPosition
-                var quien: String = ""
 
 
                 if(direction == ItemTouchHelper.LEFT){
                     student = Students(studentsList[position].id, studentsList[position].name, studentsList[position].lastname,studentsList[position].age)
-                    //studentsList.deleteJob(position)
+                    deleteStudent(student.id)
                     list.adapter?.notifyItemRemoved(position)
 
                     Snackbar.make(list, student.name + "Se eliminaría... ", Snackbar.LENGTH_LONG).setAction("Undo") {
@@ -118,7 +117,7 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
 
     }
-    
+
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
@@ -166,6 +165,8 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
 
     }
+
+    fun deleteStudent(id :Int){}
 
 
 }

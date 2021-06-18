@@ -81,7 +81,25 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        TODO("Not yet implemented")
+        when (item.itemId){
+            R.id.nav_students -> {
+                Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, CRUDStudent::class.java)
+                startActivity(i)
+            }
+            R.id.nav_courses -> {
+                Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, CRUDStudent::class.java)
+                startActivity(i)
+            }
+            R.id.nav_logout -> {
+                Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, Login::class.java)
+                startActivity(i)
+                finish()
+            }
+        }
+        return true
     }
 
 }
