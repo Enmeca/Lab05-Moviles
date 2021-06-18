@@ -2,6 +2,7 @@ package com.cabegaira.lab05
 
 import android.database.Cursor
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,7 @@ import com.google.android.material.navigation.NavigationView
 import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
+import android.view.View
 
 import android.widget.ImageView
 import android.widget.TextView
@@ -30,27 +32,35 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     private lateinit var coursesList : ArrayList<Courses>
     lateinit var list: RecyclerView
     lateinit var adapter : RecyclerView_Adapter_Courses
-
+    lateinit var fab: View
 
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.students_list)
+        setContentView(R.layout.courses_list)
         val navView: NavigationView = findViewById(R.id.nav_view)
 
-        list = findViewById(R.id.students_list)
+        list = findViewById(R.id.courses_list)
         list.layoutManager = LinearLayoutManager(list.context)
         list.setHasFixedSize(true)
 
         navView.setNavigationItemSelectedListener(this)
 
 
+
+        fab = findViewById(R.id.fab)
+        fab.setOnClickListener { view ->
+            val i = Intent(this@CRUDCourse, AddCourse::class.java)
+            startActivity(i)
+        }
+
         listCourses()
+
     }
     fun listCourses(){
 
         db = DatabaseHelper(this@CRUDCourse)
 
-        var studentsCursor : Cursor? = db!!.getQuery("SELECT * from TABLE_STUDENTS")
+        var studentsCursor : Cursor? = db!!.getQuery("SELECT * from TABLE_COURSE")
         var studentsSize : Int = studentsCursor!!.count
 
 

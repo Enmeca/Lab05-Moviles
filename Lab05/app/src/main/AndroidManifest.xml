@@ -11,6 +11,7 @@
         android:theme="@style/Theme.Lab05">
         <activity android:name=".CRUDStudent"/>
         <activity android:name=".CRUDCourse"/>
+        <activity android:name=".AddCourse"/>
         <activity
             android:name=".MainMenu"
             android:label="Main Page"

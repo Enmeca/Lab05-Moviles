@@ -9,26 +9,47 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class AddCourse : AppCompatActivity() {
+    internal var dbHelper = DatabaseHelper(this)
+    var et_id : EditText ? = null
+    var et_desc : EditText ? = null
+    var et_cred : EditText ? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_course_activity)
 
-        var et_id = findViewById(R.id.idTxt) as EditText
-        var et_desc = findViewById(R.id.desctxt) as EditText
-        var et_cred = findViewById(R.id.credTxt) as EditText
+        et_id = findViewById(R.id.idTxt) as EditText
+        et_desc = findViewById(R.id.desctxt) as EditText
+        et_cred = findViewById(R.id.credTxt) as EditText
         var insertBtn = findViewById(R.id.insertBtn) as Button
 
         insertBtn.setOnClickListener {
-            var id = et_id.text;
-            val desc = et_desc.text
-            val cred = et_cred.text
-            //users.addUser(User(user.toString().lowercase(), password.toString(), name.toString(),0))
-            Toast.makeText(this, "El usuario se ha registrado", Toast.LENGTH_LONG).show()
-
-/*            val intent = Intent(this, Login::class.java)
-            intent.putExtra("MESSAGE", "msg")
-            startActivity(intent)*/
+            insertFunction()
         }
+    }
+
+
+    fun insertFunction(){
+        try {
+            var id = et_id!!.text;
+            val desc = et_desc!!.text
+            val cred = et_cred!!.text
+            dbHelper.insertCourse(
+                id.toString().toInt(),
+                desc.toString(),
+                cred.toString().toInt())
+            val i = Intent(this, CRUDCourse::class.java)
+            Toast.makeText(this, "Curso Insertado", Toast.LENGTH_SHORT).show()
+            startActivity(i)
+        }catch (e: Exception){
+            e.printStackTrace()
+            // showToast(e.message.toString())
+        }
+    }
+
+    fun clearEditTexts(){
+        et_desc!!.setText("")
+        et_cred!!.setText("")
+        et_id!!.setText("")
     }
 }
