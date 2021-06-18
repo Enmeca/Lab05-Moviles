@@ -3,7 +3,6 @@ package com.cabegaira.lab05
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Canvas
-import android.graphics.Color.red
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import java.util.*
 import kotlin.collections.ArrayList
@@ -84,13 +82,12 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
                     list.adapter = adapter
                     adapter.notifyDataSetChanged()
                 }else{
-                    val intent = Intent(this@CRUDStudent, EditStudent::class.java)
-                    val item = studentsList[position]
+                    val intent = Intent(this@CRUDStudent, EdStudent::class.java)
+                    val item = studentsList.get(position)
                     intent.putExtra("dato", item )
-                    intent.putExtra("position",position)
                     startActivity(intent)
                     adapter.notifyDataSetChanged()
-                    //getListOfPersons()
+
                 }
             }
 
