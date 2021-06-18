@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_jobapp"
+            android:icon="@drawable/job"
+            android:title="@string/menu_jobapp" />
+        <item
+            android:id="@+id/nav_list"
+            android:icon="@drawable/list"
+            android:title="@string/menu_listjob" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/log"
+            android:title="@string/menu_logout" />
+
+
+    </group>
+</menu>
