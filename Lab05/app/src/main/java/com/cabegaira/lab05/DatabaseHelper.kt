@@ -46,6 +46,16 @@ class DatabaseHelper(context: Context) :
         db.insert(TABLE_STUDENT, null, contentValues)
     }
 
+    fun insertStudent(name: String, lastname : String, age : Int) {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(NAME, name)
+        contentValues.put(LASTNAME, lastname)
+        contentValues.put(AGE, age)
+        db.insert(TABLE_STUDENT, null, contentValues)
+    }
+
+
     /**
      * Let's create  a method to update a row with new field values.
      */
