@@ -163,6 +163,49 @@ class DatabaseHelper(context: Context) :
         return res
     }
 
+//-----------------------------------------------------------------------------------------------
+
+    fun insertMatricula(student: Int, curso: Int) {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+
+        contentValues.put(FK_ID_STUDENT, student)
+        contentValues.put(FK_ID_COURSE, curso)
+        db.insert(TABLE_ENROLLMENT, null, contentValues)
+    }
+
+
+    fun updateMatricula( desc: String, cred: Int):
+            Boolean {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(DESCRIPTION, desc)
+        contentValues.put(CREDITS, cred)
+
+       // db.update(TABLE_ENROLLMENT, contentValues, "ID_Matricula=?", arrayOf(id.toString()))
+        return true
+    }
+
+
+    fun deleteMatricula(id : String) : Int {
+        val db = this.writableDatabase
+        return db.delete(TABLE_ENROLLMENT,"ID_Matricula=?", arrayOf(id))
+    }
+
+    val allMatriculas : Cursor
+        get() {
+            val db = this.writableDatabase
+            val res = db.rawQuery("SELECT * FROM " + TABLE_ENROLLMENT, null)
+            return res
+        }
+
+
+    fun findByIdMatricula(id : String) : Cursor
+    {
+        val db = this.writableDatabase
+        val res = db.rawQuery("SELECT * FROM " + TABLE_ENROLLMENT + " WHERE ID_Matricula = ?", arrayOf(id))
+        return res
+    }
 
 
     companion object {

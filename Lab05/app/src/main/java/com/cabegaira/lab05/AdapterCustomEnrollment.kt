@@ -43,7 +43,7 @@ class RecyclerView_Adapter_Enrollment(private var items: ArrayList<Students>): R
         val item = itemsList?.get(position)
         holder.itemView.findViewById<TextView>(R.id.tvName)?.text = item?.name +" "+item?.lastname
         holder.itemView.findViewById<TextView>(R.id.tvId)?.text = item?.id.toString()
-        holder.itemView.findViewById<ImageView>(R.id.ivFoto).setImageResource(R.drawable.student)
+       // holder.itemView.findViewById<ImageView>(R.id.ivFoto).setImageResource(R.drawable.student)
 
         /*holder.itemView.setOnClickListener {
             val intent = Intent(this.mcontext, EditAplication::class.java)

@@ -12,6 +12,8 @@
         <activity android:name=".CRUDStudent"/>
         <activity android:name=".CRUDCourse"/>
         <activity android:name=".AddCourse"/>
+        <activity android:name=".Matricula"/>
+        <activity android:name=".AddMatricula"/>
         <activity
             android:name=".MainMenu"
             android:label="Main Page"

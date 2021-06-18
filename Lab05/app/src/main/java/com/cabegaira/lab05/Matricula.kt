@@ -21,10 +21,12 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
     var db: DatabaseHelper? = null
     private lateinit var coursesList : ArrayList<Courses>
+    private lateinit var studentsList : ArrayList<String>
+
     lateinit var list: RecyclerView
     lateinit var adapter : RecyclerView_Adapter_Courses
     lateinit var fab: View
@@ -32,6 +34,8 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     lateinit var course:Courses
     var position: Int = 0
     internal var dbHelper = DatabaseHelper(this)
+
+
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.courses_list)
@@ -78,22 +82,23 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                     list.adapter = adapter
                     adapter.notifyDataSetChanged()
                 }else{
-                    val intent = Intent(this@CRUDCourse, Login::class.java)
+                    val intent = Intent(this@Matricula, AddMatricula::class.java)
                     val item = coursesList[position]
-                    intent.putExtra("dato", item )
+                    listStudents()
+                    intent.putExtra("Students", studentsList )
                     intent.putExtra("position",position)
                     startActivity(intent)
                     adapter.notifyDataSetChanged()
                     //getListOfPersons()
                 }
-             }
+            }
 
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
 
-                RecyclerViewSwipeDecorator.Builder(this@CRUDCourse, c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(this@CRUDCourse, R.color.red))
+                RecyclerViewSwipeDecorator.Builder(this@Matricula, c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(this@Matricula, R.color.red))
                     .addSwipeLeftActionIcon(R.drawable.ic_baseline_delete_24)
-                    .addSwipeRightBackgroundColor(ContextCompat.getColor(this@CRUDCourse, R.color.green))
+                    .addSwipeRightBackgroundColor(ContextCompat.getColor(this@Matricula, R.color.green))
                     .addSwipeRightActionIcon(R.drawable.ic_baseline_edit_24)
                     .create()
                     .decorate()
@@ -114,6 +119,8 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         db = DatabaseHelper(this)
 
         var studentsCursor : Cursor? = db!!.getQuery("SELECT * from TABLE_COURSE")
+
+
         var studentsSize : Int = studentsCursor!!.count
 
 
@@ -164,5 +171,22 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         }
 
     }
+
+    fun listStudents(){
+
+        db = DatabaseHelper(this)
+
+        var studentsCursor : Cursor? = db!!.getQuery("SELECT * from TABLE_STUDENTS")
+        var studentsSize : Int = studentsCursor!!.count
+
+
+        studentsList = ArrayList<String>()
+        while (studentsCursor.moveToNext()){
+            val id = studentsCursor.getInt(0)
+            studentsList.add(id.toString())
+        }
+        
+    }
+
 }
 
