@@ -41,21 +41,21 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
             navView.menu.removeItem(R.id.nav_list)
         }
         if(l.admin==1){
-            navView.menu.removeItem(R.id.nav_jobapp)
+           // navView.menu.removeItem(R.id.nav)
         }
         navView.setNavigationItemSelectedListener(this)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        /*when (item.itemId){
-            R.id.nav_jobapp -> {
+        when (item.itemId){
+            R.id.nav_students -> {
                 Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
-                val i = Intent(this, ApplicationActivity::class.java)
+                val i = Intent(this, Login::class.java)
                 startActivity(i)
             }
             R.id.nav_list -> {
                 Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
-                val i = Intent(this, CRUDJobs::class.java)
+                val i = Intent(this, Login::class.java)
                 startActivity(i)
             }
             R.id.nav_logout -> {
@@ -64,7 +64,7 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
                 startActivity(i)
                 finish()
             }
-        }*/
+        }
         return true
     }
 }
