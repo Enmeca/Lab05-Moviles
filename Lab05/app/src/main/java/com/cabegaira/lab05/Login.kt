@@ -35,7 +35,7 @@ class Login : AppCompatActivity() {
             intent.putExtra("MESSAGE", "msg")
             startActivity(intent)
         }*/
-        
+
         btn_submit.setOnClickListener {
             val user_name = et_user_name.text;
             val password = et_password.text;
