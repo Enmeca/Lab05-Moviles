@@ -59,15 +59,17 @@ class DatabaseHelper(context: Context) :
     /**
      * Let's create  a method to update a row with new field values.
      */
-    fun updateData(id: String, name: String, surname: String, marks: String):
+
+
+    fun updateStudent(id: Int, name: String, lastname: String, age: Int):
             Boolean {
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(ID_STUDENTS, id)
         contentValues.put(NAME, name)
-        contentValues.put(LASTNAME, surname)
-        contentValues.put(AGE, marks)
-        db.update(TABLE_STUDENT, contentValues, "ID = ?", arrayOf(id))
+        contentValues.put(LASTNAME, lastname)
+        contentValues.put(AGE, age)
+        db.update(TABLE_STUDENT, contentValues, "ID_STUDENT = ?", arrayOf(id.toString()))
         return true
     }
 

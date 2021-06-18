@@ -84,7 +84,7 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
                     list.adapter = adapter
                     adapter.notifyDataSetChanged()
                 }else{
-                    val intent = Intent(this@CRUDStudent, Login::class.java)
+                    val intent = Intent(this@CRUDStudent, EditStudent::class.java)
                     val item = studentsList[position]
                     intent.putExtra("dato", item )
                     intent.putExtra("position",position)
