@@ -37,12 +37,12 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
         val navController = findNavController(R.id.nav_host_fragment)
 
         navView.setupWithNavController(navController)
-        if(l.admin==0){
+        /*if(l.admin==0){
             navView.menu.removeItem(R.id.nav_list)
         }
         if(l.admin==1){
            // navView.menu.removeItem(R.id.nav)
-        }
+        }*/
         navView.setNavigationItemSelectedListener(this)
     }
 
@@ -50,12 +50,12 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
         when (item.itemId){
             R.id.nav_students -> {
                 Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
-                val i = Intent(this, Login::class.java)
+                val i = Intent(this, CRUDStudent::class.java)
                 startActivity(i)
             }
-            R.id.nav_list -> {
+            R.id.nav_courses -> {
                 Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
-                val i = Intent(this, Login::class.java)
+                val i = Intent(this, CRUDStudent::class.java)
                 startActivity(i)
             }
             R.id.nav_logout -> {

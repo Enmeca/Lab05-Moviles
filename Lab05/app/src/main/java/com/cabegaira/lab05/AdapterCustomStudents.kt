@@ -41,9 +41,9 @@ class RecyclerView_Adapter_Students(private var items: ArrayList<Students>): Rec
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = itemsList?.get(position)
-        holder.itemView.findViewById<TextView>(R.id.tvNombre)?.text = item?.firstName +" "+item?.lastName
-        holder.itemView.findViewById<TextView>(R.id.tvPuesto)?.text = item?.position
-        //holder.itemView.findViewById<ImageView>(R.id.ivFoto).setImageResource(item?.foto!!)
+        holder.itemView.findViewById<TextView>(R.id.tvName)?.text = item?.name +" "+item?.lastname
+        holder.itemView.findViewById<TextView>(R.id.tvId)?.text = item?.id.toString()
+        holder.itemView.findViewById<ImageView>(R.id.ivFoto).setImageResource(R.drawable.student)
 
         /*holder.itemView.setOnClickListener {
             val intent = Intent(this.mcontext, EditAplication::class.java)
@@ -54,28 +54,22 @@ class RecyclerView_Adapter_Students(private var items: ArrayList<Students>): Rec
     }
 
 
-    /*override fun getFilter(): Filter {
+    override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
                 if (charSearch.isEmpty()) {
                     itemsList = items
                 } else {
-                    val resultList = ArrayList<JobApplication>()
+                    val resultList = ArrayList<Students>()
                     for (row in items) {
-                        if (row.firstName.toLowerCase().contains(charSearch.toLowerCase())) {
+                        if (row.name.toLowerCase().contains(charSearch.toLowerCase())) {
                             resultList.add(row)
                         }
-                        if (row.lastName.toLowerCase().contains(charSearch.toLowerCase())) {
+                        if (row.lastname.toLowerCase().contains(charSearch.toLowerCase())) {
                             resultList.add(row)
                         }
-                        if (row.position.toLowerCase().contains(charSearch.toLowerCase())) {
-                            resultList.add(row)
-                        }
-                        if (row.city.toLowerCase().contains(charSearch.toLowerCase())) {
-                            resultList.add(row)
-                        }
-                        if (row.phone.toLowerCase().contains(charSearch.toLowerCase())) {
+                        if (row.age.toString().toLowerCase().contains(charSearch.toLowerCase())) {
                             resultList.add(row)
                         }
                     }
@@ -88,11 +82,11 @@ class RecyclerView_Adapter_Students(private var items: ArrayList<Students>): Rec
 
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                itemsList = results?.values as ArrayList<JobApplication>
+                itemsList = results?.values as ArrayList<Students>
                 notifyDataSetChanged()
             }
 
         }
-    }*/
+    }
 }
 

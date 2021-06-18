@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 
-class CRUDStudents : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
     var db: DatabaseHelper? = null
     private lateinit var studentsList : ArrayList<Students>

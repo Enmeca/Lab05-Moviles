@@ -8,7 +8,7 @@
             android:id="@+id/nav_students"
             android:title="Estudiantes" />
         <item
-            android:id="@+id/nav_list"
+            android:id="@+id/nav_courses"
             android:title="Cursos" />
         <item
             android:id="@+id/nav_logout"

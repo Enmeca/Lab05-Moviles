@@ -15,7 +15,7 @@
         android:id="@+id/imageView"
         android:layout_width="111dp"
         android:layout_height="79dp"
-        android:contentDescription="Aplicacion Lab 03_B"
+        android:contentDescription="Aplicacion Lab 05"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
          />
 
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Aplicacion Lab 03_B"
+        android:text="Aplicacion Lab 05"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
