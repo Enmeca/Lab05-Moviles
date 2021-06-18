@@ -23,7 +23,7 @@ class Login : AppCompatActivity() {
         var et_password = findViewById(R.id.et_password) as EditText
         var btn_submit = findViewById(R.id.btn_submit) as Button
 
-        val create_click = findViewById(R.id.textViewLinkRegister) as TextView
+       /* val create_click = findViewById(R.id.textViewLinkRegister) as TextView
         create_click.setOnClickListener{
             val intent = Intent(this, CreateUser::class.java)
             intent.putExtra("MESSAGE", "msg")
@@ -56,7 +56,7 @@ class Login : AppCompatActivity() {
 
 
 
-        }
+        }*/
 
     }
 
