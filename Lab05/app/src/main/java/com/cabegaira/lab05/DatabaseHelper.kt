@@ -61,15 +61,15 @@ class DatabaseHelper(context: Context) :
      */
 
 
-    fun updateStudent(id: Int, name: String, lastname: String, age: Int):
+    fun updateStudent(id: String, name: String, lastname: String, age: Int):
             Boolean {
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(ID_STUDENTS, id)
+        contentValues.put(ID_STUDENT, id.toInt())
         contentValues.put(NAME, name)
         contentValues.put(LASTNAME, lastname)
         contentValues.put(AGE, age)
-        db.update(TABLE_STUDENT, contentValues, "ID_STUDENT = ?", arrayOf(id.toString()))
+        db.update(TABLE_STUDENT, contentValues, "ID_STUDENT =?", arrayOf(id))
         return true
     }
 
@@ -211,7 +211,7 @@ class DatabaseHelper(context: Context) :
     companion object {
         val DATABASE_NAME = "stars.db"
         val TABLE_STUDENT = "TABLE_STUDENTS"
-        val ID_STUDENTS = "ID"
+        val ID_STUDENT = "ID"
         val NAME = "NAME"
         val LASTNAME = "LASTNAME"
         val AGE = "AGE"

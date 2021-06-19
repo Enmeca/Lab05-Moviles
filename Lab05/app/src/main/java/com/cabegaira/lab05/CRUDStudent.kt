@@ -51,7 +51,7 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
         })
         btn = findViewById(R.id.addBtn) as Button
         btn!!.setOnClickListener{
-            val i = Intent(this, AddStudent::class.java)
+            val i = Intent(this, EditSt::class.java)
             startActivity(i)
         }
         listStudents()
@@ -82,8 +82,8 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
                     list.adapter = adapter
                     adapter.notifyDataSetChanged()
                 }else{
-                    val intent = Intent(this@CRUDStudent, EdStudent::class.java)
-                    val item = studentsList.get(position)
+                    val intent = Intent(this@CRUDStudent, EditSt::class.java)
+                    val item = studentsList[position]
                     intent.putExtra("dato", item )
                     startActivity(intent)
                     adapter.notifyDataSetChanged()
@@ -123,7 +123,7 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
             }
             R.id.nav_courses -> {
                 Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
-                val i = Intent(this, CRUDStudent::class.java)
+                val i = Intent(this, CRUDCourse::class.java)
                 startActivity(i)
             }
             R.id.nav_logout -> {

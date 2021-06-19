@@ -14,6 +14,8 @@
         <activity android:name=".AddCourse"/>
         <activity android:name=".Matricula"/>
         <activity android:name=".AddMatricula"/>
+        <activity android:name=".EditSt"/>
+        <activity android:name=".AddStudent"/>
         <activity
             android:name=".MainMenu"
             android:label="Main Page"
@@ -25,8 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EdStudent"/>
-        <activity android:name=".AddStudent"/>
+
 
 </application>
 

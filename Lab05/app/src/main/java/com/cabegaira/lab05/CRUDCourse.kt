@@ -140,7 +140,7 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
             }
             R.id.nav_courses -> {
                 Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
-                val i = Intent(this, CRUDStudent::class.java)
+                val i = Intent(this, CRUDCourse::class.java)
                 startActivity(i)
             }
             R.id.nav_logout -> {
