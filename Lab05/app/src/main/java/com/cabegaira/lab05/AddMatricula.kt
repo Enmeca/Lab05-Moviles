@@ -47,10 +47,12 @@ class AddMatricula : AppCompatActivity() {
             var desc = spinnerStudents!!.text.toString()
 
             dbHelper.insertMatricula(
-                id.toString().toInt(),
-                desc.toInt())
+                desc.toInt(),
+                id.toString().toInt()
+                )
+            val i = Intent(this, Matricula::class.java)
             Toast.makeText(this, "Matricula Agregada", Toast.LENGTH_SHORT).show()
-
+            startActivity(i)
             finish()
         }catch (e: Exception){
             e.printStackTrace()

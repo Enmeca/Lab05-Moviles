@@ -40,6 +40,7 @@ class AddStudent : AppCompatActivity() {
             val i = Intent(this, CRUDStudent::class.java)
             Toast.makeText(this, "Usuario insertado", Toast.LENGTH_SHORT).show()
             startActivity(i)
+            finish()
         }catch (e: Exception){
             e.printStackTrace()
             // showToast(e.message.toString())

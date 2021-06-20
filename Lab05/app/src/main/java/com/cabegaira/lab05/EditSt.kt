@@ -20,7 +20,7 @@ class EditSt : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.student_edit_activity)
        dato = intent.getSerializableExtra("dato") as Students?
-        Log.d("asd",dato!!.name)
+//        Log.d("asd",dato!!.name)
         ed_id = findViewById(R.id.editId) as EditText
         ed_id!!.setText(dato!!.id.toString())
         ed_name = findViewById(R.id.editName) as EditText
@@ -43,9 +43,10 @@ class EditSt : AppCompatActivity() {
         try {
             dbHelper.updateStudent(ed_id!!.text.toString(),ed_name!!.text.toString(),
                 ed_apellidos!!.text.toString(), ed_edad!!.text.toString().toInt())
-            val i = Intent(this, CRUDStudent::class.java)
+           // val i = Intent(this, CRUDStudent::class.java)
             Toast.makeText(this, "Usuario Actualizado", Toast.LENGTH_SHORT).show()
-            startActivity(i)
+            //startActivity(i)
+            finish()
         }catch (e: Exception){
             e.printStackTrace()
             // showToast(e.message.toString())

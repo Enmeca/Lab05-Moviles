@@ -41,6 +41,7 @@ class AddCourse : AppCompatActivity() {
             val i = Intent(this, CRUDCourse::class.java)
             Toast.makeText(this, "Curso Insertado", Toast.LENGTH_SHORT).show()
             startActivity(i)
+            finish()
         }catch (e: Exception){
             e.printStackTrace()
             // showToast(e.message.toString())

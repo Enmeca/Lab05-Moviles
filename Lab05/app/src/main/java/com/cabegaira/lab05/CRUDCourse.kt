@@ -49,6 +49,7 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         fab.setOnClickListener { view ->
             val i = Intent(this, AddCourse::class.java)
             startActivity(i)
+            finish()
         }
 
         listCourses()

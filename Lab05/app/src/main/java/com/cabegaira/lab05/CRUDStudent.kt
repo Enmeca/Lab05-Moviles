@@ -51,8 +51,9 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
         })
         btn = findViewById(R.id.addBtn) as Button
         btn!!.setOnClickListener{
-            val i = Intent(this, EditSt::class.java)
+            val i = Intent(this, AddStudent::class.java)
             startActivity(i)
+            finish()
         }
         listStudents()
 

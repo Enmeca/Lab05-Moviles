@@ -42,9 +42,10 @@ class StudentEdit : AppCompatActivity() {
         try {
             dbHelper.updateStudent(ed_id!!.text.toString(),ed_name!!.text.toString(),
                 ed_apellidos!!.text.toString(), ed_edad!!.text.toString().toInt())
-            val i = Intent(this, CRUDStudent::class.java)
+            //val i = Intent(this, CRUDStudent::class.java)
             Toast.makeText(this, "Usuario Actualizado", Toast.LENGTH_SHORT).show()
-            startActivity(i)
+            //startActivity(i)
+            finish()
         }catch (e: Exception){
             e.printStackTrace()
             // showToast(e.message.toString())
