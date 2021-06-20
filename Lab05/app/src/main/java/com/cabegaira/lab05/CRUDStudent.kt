@@ -146,7 +146,9 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
         studentsList = ArrayList<Students>()
 
-        do{
+        if(studentsSize>0){
+
+            do{
             val id = studentsCursor.getInt(0)
             val name = studentsCursor.getString(1)
             val lastName = studentsCursor.getString(2)
@@ -154,6 +156,7 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
             studentsList.add(Students(id,name,lastName,age))
             }while(studentsCursor.moveToNext())
+        }
 
         adapter = RecyclerView_Adapter_Students(studentsList)
         list.adapter = adapter

@@ -126,13 +126,17 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
 
         coursesList = ArrayList<Courses>()
-        do {
-            val id = studentsCursor.getInt(0)
-            val desc = studentsCursor.getString(1)
-            val cred = studentsCursor.getInt(2)
 
-            coursesList.add(Courses(id,desc,cred))
-        }while(studentsCursor.moveToNext())
+        if(studentsSize>0){
+
+            do {
+                val id = studentsCursor.getInt(0)
+                val desc = studentsCursor.getString(1)
+                val cred = studentsCursor.getInt(2)
+
+                coursesList.add(Courses(id,desc,cred))
+           }while(studentsCursor.moveToNext())
+        }
 
 
 

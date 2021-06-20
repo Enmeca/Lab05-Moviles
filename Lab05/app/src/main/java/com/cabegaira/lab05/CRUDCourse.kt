@@ -78,13 +78,12 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                     list.adapter = adapter
                     adapter.notifyDataSetChanged()
                 }else{
-                    val intent = Intent(this@CRUDCourse, Login::class.java)
+                    val intent = Intent(this@CRUDCourse, EditCourse::class.java)
                     val item = coursesList[position]
                     intent.putExtra("dato", item )
-                    intent.putExtra("position",position)
                     startActivity(intent)
+                    listCourses()
                     adapter.notifyDataSetChanged()
-                    //getListOfPersons()
                 }
              }
 
@@ -116,15 +115,17 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         var studentsCursor : Cursor? = db!!.getQuery("SELECT * from TABLE_COURSE")
         var studentsSize : Int = studentsCursor!!.count
 
-
         coursesList = ArrayList<Courses>()
-        do{
-            val id = studentsCursor.getInt(0)
-            val desc = studentsCursor.getString(1)
-            val cred = studentsCursor.getInt(2)
 
-            coursesList.add(Courses(id,desc,cred))
-        }while (studentsCursor.moveToNext())
+        if(studentsSize>0) {
+            do {
+                val id = studentsCursor.getInt(0)
+                val desc = studentsCursor.getString(1)
+                val cred = studentsCursor.getInt(2)
+
+                coursesList.add(Courses(id, desc, cred))
+            } while (studentsCursor.moveToNext())
+        }
 
         adapter = RecyclerView_Adapter_Courses(coursesList)
         list.adapter = adapter

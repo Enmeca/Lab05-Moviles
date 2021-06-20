@@ -17,6 +17,7 @@
         <activity android:name=".EditSt"/>
         <activity android:name=".AddStudent"/>
         <activity android:name=".GetMatricula"/>
+        <activity android:name=".EditCourse"/>
         <activity
             android:name=".MainMenu"
             android:label="Main Page"

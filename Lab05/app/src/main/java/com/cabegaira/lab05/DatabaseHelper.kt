@@ -129,7 +129,7 @@ class DatabaseHelper(context: Context) :
             Boolean {
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(ID_COURSE, id)
+        //contentValues.put(ID_COURSE, id)
         contentValues.put(DESCRIPTION, desc)
         contentValues.put(CREDITS, cred)
 
@@ -189,7 +189,7 @@ class DatabaseHelper(context: Context) :
 
     fun deleteMatricula(id : String) : Int {
         val db = this.writableDatabase
-        return db.delete(TABLE_ENROLLMENT,"ID_Matricula=?", arrayOf(id))
+        return db.delete(TABLE_ENROLLMENT,"ID_ENROLLMENT=?", arrayOf(id))
     }
 
     val allMatriculas : Cursor
