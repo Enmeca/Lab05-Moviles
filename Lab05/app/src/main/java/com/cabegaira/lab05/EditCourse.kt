@@ -1,5 +1,6 @@
 package com.cabegaira.lab05
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -45,6 +46,7 @@ class EditCourse : AppCompatActivity() {
                 ed_cred!!.text.toString().toInt()
             )
             Toast.makeText(this, "Usuario Actualizado", Toast.LENGTH_SHORT).show()
+            setResult(Activity.RESULT_OK)
             finish()
         }catch (e: Exception){
             e.printStackTrace()

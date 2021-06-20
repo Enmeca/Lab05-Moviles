@@ -15,6 +15,8 @@ import android.view.View
 
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
@@ -28,7 +30,7 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
     private lateinit var studentsList : ArrayList<String>
 
     lateinit var list: RecyclerView
-    lateinit var adapter : RecyclerView_Adapter_Courses
+    lateinit var adapter : RecyclerView_Adapter_Enrollment
     lateinit var fab: View
 
     lateinit var course:Courses
@@ -39,15 +41,26 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.courses_list)
-        val navView: NavigationView = findViewById(R.id.nav_view)
+
 
         list = findViewById(R.id.courses_list)
         list.layoutManager = LinearLayoutManager(list.context)
         list.setHasFixedSize(true)
 
+
+
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        val navController = findNavController(R.id.nav_host_fragment)
+
+        navView.setupWithNavController(navController)
+        /*if(l.admin==0){
+            navView.menu.removeItem(R.id.nav_list)
+        }
+        if(l.admin==1){
+           // navView.menu.removeItem(R.id.nav)
+        }*/
+
         navView.setNavigationItemSelectedListener(this)
-
-
 
         fab = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
@@ -79,7 +92,7 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                     deleteCourse(course.id)
                     list.adapter?.notifyItemRemoved(position)
 
-                    adapter = RecyclerView_Adapter_Courses(coursesList)
+                    adapter = RecyclerView_Adapter_Enrollment(coursesList)
                     list.adapter = adapter
                     adapter.notifyDataSetChanged()
                 }else{
@@ -140,7 +153,7 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
 
 
-        adapter = RecyclerView_Adapter_Courses(coursesList)
+        adapter = RecyclerView_Adapter_Enrollment(coursesList)
         list.adapter = adapter
 
     }
@@ -148,14 +161,16 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             R.id.nav_students -> {
-                Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Estudiantes", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, CRUDStudent::class.java)
                 startActivity(i)
+                finish()
             }
             R.id.nav_courses -> {
-                Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Cursos", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, CRUDCourse::class.java)
                 startActivity(i)
+                finish()
             }
             R.id.nav_logout -> {
                 Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show()

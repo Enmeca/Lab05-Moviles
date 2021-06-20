@@ -50,9 +50,9 @@ class AddMatricula : AppCompatActivity() {
                 desc.toInt(),
                 id.toString().toInt()
                 )
-            val i = Intent(this, Matricula::class.java)
+           // val i = Intent(this, Matricula::class.java)
             Toast.makeText(this, "Matricula Agregada", Toast.LENGTH_SHORT).show()
-            startActivity(i)
+            //startActivity(i)
             finish()
         }catch (e: Exception){
             e.printStackTrace()

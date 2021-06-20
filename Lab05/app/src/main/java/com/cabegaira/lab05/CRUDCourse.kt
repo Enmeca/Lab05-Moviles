@@ -1,22 +1,23 @@
 package com.cabegaira.lab05
 
+
+import android.app.Activity
+import android.content.Intent
 import android.database.Cursor
+import android.graphics.Canvas
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
-
-
-import android.content.Intent
-import android.graphics.Canvas
-import android.view.View
-
-import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.ItemTouchHelper
-import com.google.android.material.snackbar.Snackbar
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import java.util.*
 import kotlin.collections.ArrayList
@@ -29,18 +30,29 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     lateinit var adapter : RecyclerView_Adapter_Courses
     lateinit var fab: View
 
+    val Llamada = 424
+
     lateinit var course:Courses
     var position: Int = 0
     internal var dbHelper = DatabaseHelper(this)
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.courses_list)
-        val navView: NavigationView = findViewById(R.id.nav_view)
 
         list = findViewById(R.id.courses_list)
         list.layoutManager = LinearLayoutManager(list.context)
         list.setHasFixedSize(true)
 
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        val navController = findNavController(R.id.nav_host_fragment)
+
+        navView.setupWithNavController(navController)
+        /*if(l.admin==0){
+            navView.menu.removeItem(R.id.nav_list)
+        }
+        if(l.admin==1){
+           // navView.menu.removeItem(R.id.nav)
+        }*/
         navView.setNavigationItemSelectedListener(this)
 
 
@@ -82,7 +94,8 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                     val intent = Intent(this@CRUDCourse, EditCourse::class.java)
                     val item = coursesList[position]
                     intent.putExtra("dato", item )
-                    startActivity(intent)
+                    startActivityForResult(intent,Llamada)
+
                     listCourses()
                     adapter.notifyDataSetChanged()
                 }
@@ -136,14 +149,16 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             R.id.nav_students -> {
-                Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Estudiantes", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, CRUDStudent::class.java)
                 startActivity(i)
+                finish()
             }
             R.id.nav_courses -> {
-                Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Cursos", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, CRUDCourse::class.java)
                 startActivity(i)
+                finish()
             }
             R.id.nav_logout -> {
                 Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show()
@@ -172,5 +187,16 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         }
 
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Check that it is the SecondActivity with an OK result
+        if (requestCode == Llamada) {
+            if (resultCode == Activity.RESULT_OK) {
+                listCourses()
+            }
+        }
+    }
+
 }
 

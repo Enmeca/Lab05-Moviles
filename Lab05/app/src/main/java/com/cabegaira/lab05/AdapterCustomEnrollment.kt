@@ -15,10 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 import kotlin.collections.ArrayList
 
-class RecyclerView_Adapter_Enrollment(private var items: ArrayList<Students>): RecyclerView.Adapter<RecyclerView.ViewHolder>(),
+class RecyclerView_Adapter_Enrollment(private var items: ArrayList<Courses>): RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     Filterable {
 
-    var itemsList: ArrayList<Students>? = null
+    var itemsList: ArrayList<Courses>? = null
 
     lateinit var mcontext: Context
 
@@ -41,16 +41,16 @@ class RecyclerView_Adapter_Enrollment(private var items: ArrayList<Students>): R
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = itemsList?.get(position)
-        holder.itemView.findViewById<TextView>(R.id.tvName)?.text = item?.name +" "+item?.lastname
         holder.itemView.findViewById<TextView>(R.id.tvId)?.text = item?.id.toString()
-       // holder.itemView.findViewById<ImageView>(R.id.ivFoto).setImageResource(R.drawable.student)
+        holder.itemView.findViewById<TextView>(R.id.tvdesc)?.text = item?.description
+        holder.itemView.findViewById<TextView>(R.id.tvCred)?.text= item?.credits.toString()
+        holder.itemView.findViewById<ImageView>(R.id.ivFoto).setImageResource(R.drawable.courses)
 
-        /*holder.itemView.setOnClickListener {
-            val intent = Intent(this.mcontext, EditAplication::class.java)
-            intent.putExtra("dato", item)
-            intent.putExtra("position",position)
+        holder.itemView.setOnClickListener {
+            val intent = Intent(this.mcontext, GetStudents::class.java)
+            intent.putExtra("course", item!!.id)
             this.mcontext.startActivity(intent)
-        }*/
+        }
     }
 
 
@@ -61,15 +61,15 @@ class RecyclerView_Adapter_Enrollment(private var items: ArrayList<Students>): R
                 if (charSearch.isEmpty()) {
                     itemsList = items
                 } else {
-                    val resultList = ArrayList<Students>()
+                    val resultList = ArrayList<Courses>()
                     for (row in items) {
-                        if (row.name.toLowerCase().contains(charSearch.toLowerCase())) {
+                        if (row.id.toString().contains(charSearch.toLowerCase())) {
                             resultList.add(row)
                         }
-                        if (row.lastname.toLowerCase().contains(charSearch.toLowerCase())) {
+                        if (row.description.toLowerCase().contains(charSearch.toLowerCase())) {
                             resultList.add(row)
                         }
-                        if (row.age.toString().toLowerCase().contains(charSearch.toLowerCase())) {
+                        if (row.credits.toString().toLowerCase().contains(charSearch.toLowerCase())) {
                             resultList.add(row)
                         }
                     }
@@ -82,7 +82,7 @@ class RecyclerView_Adapter_Enrollment(private var items: ArrayList<Students>): R
 
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                itemsList = results?.values as ArrayList<Students>
+                itemsList = results?.values as ArrayList<Courses>
                 notifyDataSetChanged()
             }
 

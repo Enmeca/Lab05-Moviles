@@ -1,5 +1,6 @@
 package com.cabegaira.lab05
 
+import android.app.Activity
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Canvas
@@ -10,6 +11,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,16 +31,30 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
     lateinit var student:Students
     internal var dbHelper = DatabaseHelper(this)
     var position: Int = 0
+    val Llamada = 424
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.students_list)
-        val navView: NavigationView = findViewById(R.id.nav_view)
+
 
         list = findViewById(R.id.students_list)
         list.layoutManager = LinearLayoutManager(list.context)
         list.setHasFixedSize(true)
 
+
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        val navController = findNavController(R.id.nav_host_fragment)
+
+        navView.setupWithNavController(navController)
+        /*if(l.admin==0){
+            navView.menu.removeItem(R.id.nav_list)
+        }
+        if(l.admin==1){
+           // navView.menu.removeItem(R.id.nav)
+        }*/
         navView.setNavigationItemSelectedListener(this)
+
+
 
         findViewById<SearchView>(R.id.student_search).setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -86,7 +103,8 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
                     val intent = Intent(this@CRUDStudent, EditSt::class.java)
                     val item = studentsList[position]
                     intent.putExtra("dato", item )
-                    startActivity(intent)
+                    startActivityForResult(intent,Llamada)
+                    listStudents()
                     adapter.notifyDataSetChanged()
 
                 }
@@ -118,14 +136,16 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             R.id.nav_students -> {
-                Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Estudiantes", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, CRUDStudent::class.java)
                 startActivity(i)
+                finish()
             }
             R.id.nav_courses -> {
-                Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Cursos", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, CRUDCourse::class.java)
                 startActivity(i)
+                finish()
             }
             R.id.nav_logout -> {
                 Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show()
@@ -180,6 +200,17 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
         }catch (e: Exception){
             e.printStackTrace()
             //showToast(e.message.toString())
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Check that it is the SecondActivity with an OK result
+        if (requestCode == Llamada) {
+            if (resultCode == Activity.RESULT_OK) {
+                listStudents()
+            }
         }
     }
 

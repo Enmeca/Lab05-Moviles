@@ -49,12 +49,12 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             R.id.nav_students -> {
-                Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Estudiantes", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, CRUDStudent::class.java)
                 startActivity(i)
             }
             R.id.nav_courses -> {
-                Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Cursos", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, CRUDCourse::class.java)
                 startActivity(i)
             }
@@ -62,13 +62,13 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
                 Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, Login::class.java)
                 startActivity(i)
+                
                 finish()
             }
             R.id.nav_mat -> {
                 Toast.makeText(this, "Matricula", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, Matricula::class.java)
                 startActivity(i)
-                finish()
             }
         }
         return true
