@@ -62,7 +62,7 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
                 Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, Login::class.java)
                 startActivity(i)
-                
+
                 finish()
             }
             R.id.nav_mat -> {

@@ -50,9 +50,7 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
 
         val navView: NavigationView = findViewById(R.id.nav_view)
-        val navController = findNavController(R.id.nav_host_fragment)
 
-        navView.setupWithNavController(navController)
         /*if(l.admin==0){
             navView.menu.removeItem(R.id.nav_list)
         }
