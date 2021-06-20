@@ -8,23 +8,25 @@ import androidx.appcompat.app.AppCompatActivity
 class AddMatricula : AppCompatActivity() {
 
     internal var dbHelper = DatabaseHelper(this)
-    var et_id : EditText ? = null
+    var et_id : Int ? = 0
     var et_desc : EditText ? = null
     var et_cred : EditText ? = null
+    var insertBtn: Button ? = null
     private lateinit var spinnerStudents: AutoCompleteTextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_matricula_activity)
 
         val bundle = intent.extras
 
-        val l =  bundle!!.getSerializable("Students") as ArrayList<String>
+        var l =  bundle!!.getSerializable("Students") as ArrayList<String>
+        var idC =  bundle!!.getSerializable("course") as Int
 
         spinnerStudents = findViewById<AutoCompleteTextView>(R.id.spinnerStudents)
-        et_id = findViewById(R.id.idTxt) as EditText
-        et_desc = findViewById(R.id.desctxt) as EditText
-        et_cred = findViewById(R.id.credTxt) as EditText
-        var insertBtn = findViewById(R.id.insertBtn) as Button
+        et_id = idC
+
+        insertBtn = findViewById<Button>(R.id.BtnInsert) as Button?
 
 
         var adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, l)
@@ -33,7 +35,7 @@ class AddMatricula : AppCompatActivity() {
 
 
 
-        insertBtn.setOnClickListener {
+        insertBtn!!.setOnClickListener {
             insertFunction()
         }
     }
@@ -41,26 +43,20 @@ class AddMatricula : AppCompatActivity() {
 
     fun insertFunction(){
         try {
-            var id = et_id!!.text;
-            val desc = et_desc!!.text
-            val cred = et_cred!!.text
-            dbHelper.insertCourse(
+            var id = et_id
+            var desc = spinnerStudents!!.text.toString()
+
+            dbHelper.insertMatricula(
                 id.toString().toInt(),
-                desc.toString(),
-                cred.toString().toInt())
-            val i = Intent(this, CRUDCourse::class.java)
-            Toast.makeText(this, "Curso Insertado", Toast.LENGTH_SHORT).show()
-            startActivity(i)
+                desc.toInt())
+            Toast.makeText(this, "Matricula Agregada", Toast.LENGTH_SHORT).show()
+
+            finish()
         }catch (e: Exception){
             e.printStackTrace()
             // showToast(e.message.toString())
         }
     }
 
-    fun clearEditTexts(){
-        et_desc!!.setText("")
-        et_cred!!.setText("")
-        et_id!!.setText("")
-    }
 
 }

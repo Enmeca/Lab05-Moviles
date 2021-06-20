@@ -1,130 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   >
+    android:scrollbarStyle="outsideOverlay"
+    >
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        >
 
-        <TextView
-            android:id="@+id/nameLabel"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:padding="5dp"
-            android:text="ID"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <AutoCompleteTextView
-            android:hint="Estudiante"
-            android:id="@+id/spinnerStudents"
-            android:layout_width="272dp"
-            android:layout_height="94dp"
-            android:layout_marginLeft="10dp"
-            android:editable="false"
-            android:textColor="#000000" />
-    </LinearLayout>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+                <TableRow>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:padding="5dp"
-            android:text="Nombre: "
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="bold" />
+                    <ImageButton
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_span="1"
 
-        <EditText
-            android:id="@+id/nameTxt"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Nombre" />
-    </LinearLayout>
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:stretchColumns="1">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:padding="5dp"
-            android:text="Apellidos: "
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="bold" />
+                        <TableRow>
 
-        <EditText
-            android:id="@+id/apellidosTxt"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Apellidos" />
-    </LinearLayout>
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="28dp"
+                                android:layout_span="3"
+                                android:text="Matricular Estudiante"
+                                android:textColor="#0C0C0C"
+                                android:textSize="27sp"
+                                android:textStyle="bold"
+                                tools:ignore="RtlCompat" />
+                        </TableRow>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+                        <TableRow/>
+                    </TableLayout>
+                </TableRow>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:padding="5dp"
-            android:text="Edad: "
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="bold" />
+                <TableRow>
 
-        <EditText
-            android:id="@+id/edadTxt"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textCapWords"
-            android:hint="Edad" />
-    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="20dp"
+                        android:text="ID Estudiante"
+                        android:textColor="#0C0C0C"
+                        android:textSize="15sp"
+                        tools:ignore="RtlCompat" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/insertBtn"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Insertar" />
+                    <LinearLayout
+                        android:layout_column="1"
+                        android:layout_weight="2"
+                        android:orientation="horizontal">
 
 
-    </LinearLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/outlinedTextField7"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="0dp"
+                            android:layout_weight="1"
+
+                            android:hint="Estudiante"
+                            android:textColorHint="#000000">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/spinnerStudents"
+                                android:layout_width="249dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:editable="false"
+                                android:textColor="#000000" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:orientation="vertical"/>
+
+                    <LinearLayout
+                        android:layout_column="1"
+                        android:layout_weight="4"
+                        android:orientation="horizontal"/>
+                </TableRow>
+
+                <TableRow>
+
+                    <LinearLayout
+                        android:layout_column="1"
+                        android:layout_weight="4"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:layout_weight="4"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/outlinedTextField12"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="0dp"
+                                android:hint="Pick a date"
+                                android:textColorHint="#000000"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </TableRow>
 
 
+                <TableRow>
 
-</LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_column="0"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="40dp"
+                        android:text="Matricular"
+                        android:textColor="#0C0C0C"
+                        android:textSize="15sp"
+                        tools:ignore="RtlCompat" />
+
+                    <LinearLayout
+                        android:layout_column="1"
+                        android:layout_weight="4"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="230dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="40dp"
+                            android:background="#17315C"
+                            android:id="@+id/BtnInsert"
+                            android:text="Enviar"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -13,7 +13,7 @@ class AddCourse : AppCompatActivity() {
     var et_id : EditText ? = null
     var et_desc : EditText ? = null
     var et_cred : EditText ? = null
-
+    var insertBtn: Button ? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_course_activity)
@@ -21,9 +21,9 @@ class AddCourse : AppCompatActivity() {
         et_id = findViewById(R.id.idTxt) as EditText
         et_desc = findViewById(R.id.desctxt) as EditText
         et_cred = findViewById(R.id.credTxt) as EditText
-        var insertBtn = findViewById(R.id.insertBtn) as Button
+        insertBtn = findViewById(R.id.insertBtn) as Button
 
-        insertBtn.setOnClickListener {
+        insertBtn!!.setOnClickListener {
             insertFunction()
         }
     }

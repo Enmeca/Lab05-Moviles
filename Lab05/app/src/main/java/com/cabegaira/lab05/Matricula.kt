@@ -56,6 +56,7 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         }
 
         listCourses()
+
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN or ItemTouchHelper.START or ItemTouchHelper.END, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
                 val fromPosition: Int = viewHolder.adapterPosition
@@ -86,7 +87,7 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
                     val item = coursesList[position]
                     listStudents()
                     intent.putExtra("Students", studentsList )
-                    intent.putExtra("position",position)
+                    intent.putExtra("course",item.id)
                     startActivity(intent)
                     adapter.notifyDataSetChanged()
                     //getListOfPersons()
@@ -125,13 +126,15 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
 
         coursesList = ArrayList<Courses>()
-        while (studentsCursor.moveToNext()){
+        do {
             val id = studentsCursor.getInt(0)
             val desc = studentsCursor.getString(1)
             val cred = studentsCursor.getInt(2)
 
             coursesList.add(Courses(id,desc,cred))
-        }
+        }while(studentsCursor.moveToNext())
+
+
 
         adapter = RecyclerView_Adapter_Courses(coursesList)
         list.adapter = adapter
@@ -181,11 +184,12 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
 
         studentsList = ArrayList<String>()
-        while (studentsCursor.moveToNext()){
+
+        do{
             val id = studentsCursor.getInt(0)
             studentsList.add(id.toString())
-        }
-        
+        }while (studentsCursor.moveToNext())
+
     }
 
 }

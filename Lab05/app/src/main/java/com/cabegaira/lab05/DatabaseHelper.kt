@@ -203,7 +203,10 @@ class DatabaseHelper(context: Context) :
     fun findByIdMatricula(id : String) : Cursor
     {
         val db = this.writableDatabase
-        val res = db.rawQuery("SELECT * FROM " + TABLE_ENROLLMENT + " WHERE ID_Matricula = ?", arrayOf(id))
+        val res = db.rawQuery("SELECT ID_COURSE, DESCRIPTION, CREDITS "+
+                "FROM TABLE_ENROLLMENT, TABLE_COURSE "+
+                "WHERE FK_ID_STUDENT = ? AND FK_ID_COURSE = ID_COURSE",
+            arrayOf(id))
         return res
     }
 

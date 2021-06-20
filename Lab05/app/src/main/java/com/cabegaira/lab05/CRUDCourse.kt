@@ -118,13 +118,13 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
 
         coursesList = ArrayList<Courses>()
-        while (studentsCursor.moveToNext()){
+        do{
             val id = studentsCursor.getInt(0)
             val desc = studentsCursor.getString(1)
             val cred = studentsCursor.getInt(2)
 
             coursesList.add(Courses(id,desc,cred))
-        }
+        }while (studentsCursor.moveToNext())
 
         adapter = RecyclerView_Adapter_Courses(coursesList)
         list.adapter = adapter

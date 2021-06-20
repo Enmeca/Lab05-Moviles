@@ -45,12 +45,11 @@ class RecyclerView_Adapter_Students(private var items: ArrayList<Students>): Rec
         holder.itemView.findViewById<TextView>(R.id.tvId)?.text = item?.id.toString()
         holder.itemView.findViewById<ImageView>(R.id.ivFoto).setImageResource(R.drawable.student)
 
-        /*holder.itemView.setOnClickListener {
-            val intent = Intent(this.mcontext, EditAplication::class.java)
-            intent.putExtra("dato", item)
-            intent.putExtra("position",position)
+        holder.itemView.setOnClickListener {
+            val intent = Intent(this.mcontext, GetMatricula::class.java)
+            intent.putExtra("student", item?.id)
             this.mcontext.startActivity(intent)
-        }*/
+        }
     }
 
 

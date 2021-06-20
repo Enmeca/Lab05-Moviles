@@ -145,14 +145,15 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
 
         studentsList = ArrayList<Students>()
-        while (studentsCursor.moveToNext()){
+
+        do{
             val id = studentsCursor.getInt(0)
             val name = studentsCursor.getString(1)
             val lastName = studentsCursor.getString(2)
             val age = studentsCursor.getInt(3)
 
             studentsList.add(Students(id,name,lastName,age))
-        }
+            }while(studentsCursor.moveToNext())
 
         adapter = RecyclerView_Adapter_Students(studentsList)
         list.adapter = adapter
