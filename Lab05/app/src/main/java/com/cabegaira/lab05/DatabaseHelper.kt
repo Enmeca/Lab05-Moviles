@@ -146,6 +146,7 @@ class DatabaseHelper(context: Context) :
 
     fun deleteStudent(id : String) : Int {
         val db = this.writableDatabase
+        db.execSQL("DELETE FROM TABLE_ENROLLMENT WHERE FK_ID_STUDENT = "+id)
         return db.delete(TABLE_STUDENT,"ID_STUDENT=?", arrayOf(id))
     }
 
