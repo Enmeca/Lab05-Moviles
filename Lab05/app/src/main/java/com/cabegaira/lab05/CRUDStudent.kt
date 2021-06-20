@@ -133,6 +133,12 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
                 startActivity(i)
                 finish()
             }
+            R.id.nav_mat -> {
+                Toast.makeText(this, "Matricula", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, Matricula::class.java)
+                startActivity(i)
+                finish()
+            }
         }
         return true
     }

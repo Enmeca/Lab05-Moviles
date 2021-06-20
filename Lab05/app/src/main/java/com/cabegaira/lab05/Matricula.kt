@@ -154,12 +154,18 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             }
             R.id.nav_courses -> {
                 Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show()
-                val i = Intent(this, CRUDStudent::class.java)
+                val i = Intent(this, CRUDCourse::class.java)
                 startActivity(i)
             }
             R.id.nav_logout -> {
                 Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, Login::class.java)
+                startActivity(i)
+                finish()
+            }
+            R.id.nav_mat -> {
+                Toast.makeText(this, "Matricula", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, Matricula::class.java)
                 startActivity(i)
                 finish()
             }

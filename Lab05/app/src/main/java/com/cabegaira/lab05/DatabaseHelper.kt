@@ -61,11 +61,9 @@ class DatabaseHelper(context: Context) :
      */
 
 
-    fun updateStudent(id: String, name: String, lastname: String, age: Int):
-            Boolean {
+    fun updateStudent(id: String, name: String, lastname: String, age: Int): Boolean {
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(ID_STUDENT, id.toInt())
         contentValues.put(NAME, name)
         contentValues.put(LASTNAME, lastname)
         contentValues.put(AGE, age)
