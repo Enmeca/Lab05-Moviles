@@ -41,7 +41,9 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.courses_list)
-
+        //to change title of activity
+        val actionBar = supportActionBar
+        actionBar!!.title = "Matricular Estudiante"
 
         list = findViewById(R.id.courses_list)
         list.layoutManager = LinearLayoutManager(list.context)

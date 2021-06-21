@@ -39,6 +39,11 @@ class CRUDCourse : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.courses_list)
 
+        //to change title of activity
+        val actionBar = supportActionBar
+        actionBar!!.title = "CRUD Cursos"
+
+
         list = findViewById(R.id.courses_list)
         list.layoutManager = LinearLayoutManager(list.context)
         list.setHasFixedSize(true)

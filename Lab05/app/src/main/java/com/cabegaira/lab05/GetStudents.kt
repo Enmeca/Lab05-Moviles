@@ -33,6 +33,10 @@ class GetStudents : AppCompatActivity() {
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.students_list)
+        //to change title of activity
+        val actionBar = supportActionBar
+        actionBar!!.title = "Estudiantes Matriculados"
+
         val navView: NavigationView = findViewById(R.id.nav_view)
 
         list = findViewById(R.id.students_list)

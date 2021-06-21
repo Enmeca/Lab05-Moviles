@@ -20,6 +20,11 @@ class EditCourse : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.course_edit_activity)
+
+        //to change title of activity
+        val actionBar = supportActionBar
+        actionBar!!.title = "Editar Curso"
+
         dato = intent.getSerializableExtra("dato") as Courses?
 
         ed_id = findViewById(R.id.editIdC) as EditText

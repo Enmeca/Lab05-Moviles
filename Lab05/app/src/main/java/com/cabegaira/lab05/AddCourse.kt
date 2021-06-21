@@ -23,6 +23,11 @@ class AddCourse : AppCompatActivity() {
         et_cred = findViewById(R.id.credTxt) as EditText
         insertBtn = findViewById(R.id.insertBtn) as Button
 
+        //(activity as? AppCompatActivity)?.supportActionBar?.title = "title"
+        //to change title of activity
+        val actionBar = supportActionBar
+        actionBar!!.title = "Añadir Curso"
+
         insertBtn!!.setOnClickListener {
             insertFunction()
         }

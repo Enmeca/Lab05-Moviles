@@ -38,6 +38,10 @@ class AddMatricula : AppCompatActivity() {
         insertBtn!!.setOnClickListener {
             insertFunction()
         }
+
+        //to change title of activity
+        val actionBar = supportActionBar
+        actionBar!!.title = "Añadir Matricula"
     }
 
 

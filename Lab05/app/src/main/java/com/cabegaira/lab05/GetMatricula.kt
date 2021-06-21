@@ -34,6 +34,10 @@ class GetMatricula : AppCompatActivity() {
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.matricula_list)
+        //to change title of activity
+        val actionBar = supportActionBar
+        actionBar!!.title = "Matriculas del Estudiante"
+
         val navView: NavigationView = findViewById(R.id.nav_view)
 
         list = findViewById(R.id.matricula_list)

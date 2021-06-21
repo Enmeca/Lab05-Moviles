@@ -36,6 +36,9 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
         super.onCreate(savedInstanceState)
         setContentView(R.layout.students_list)
 
+        //to change title of activity
+        val actionBar = supportActionBar
+        actionBar!!.title = "CRUD Estudiantes"
 
         list = findViewById(R.id.students_list)
         list.layoutManager = LinearLayoutManager(list.context)
@@ -43,7 +46,7 @@ class CRUDStudent : AppCompatActivity(), NavigationView.OnNavigationItemSelected
 
 
         val navView: NavigationView = findViewById(R.id.nav_view)
-        
+
         /*if(l.admin==0){
             navView.menu.removeItem(R.id.nav_list)
         }

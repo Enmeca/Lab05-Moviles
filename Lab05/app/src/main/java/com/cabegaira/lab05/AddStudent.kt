@@ -31,6 +31,10 @@ class AddStudent : AppCompatActivity() {
             insertFunction()
         }
 
+        //to change title of activity
+        val actionBar = supportActionBar
+        actionBar!!.title = "Añadir Estudiante"
+
     }
 
     fun insertFunction(){
