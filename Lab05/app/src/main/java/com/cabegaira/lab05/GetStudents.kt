@@ -7,12 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
-
-
 import android.content.Intent
 import android.graphics.Canvas
 import android.view.View
-
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -21,7 +18,7 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import java.util.*
 import kotlin.collections.ArrayList
 
-class GetStudents : AppCompatActivity() {
+class GetStudents : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
     var db: DatabaseHelper? = null
     private lateinit var MatList : ArrayList<Int>
     private lateinit var StudentsList : ArrayList<Students>
@@ -37,13 +34,22 @@ class GetStudents : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar!!.title = "Estudiantes Matriculados"
 
-        val navView: NavigationView = findViewById(R.id.nav_view)
 
         list = findViewById(R.id.students_list)
         list.layoutManager = LinearLayoutManager(list.context)
         list.setHasFixedSize(true)
 
         val bundle = intent.extras
+
+        val navView: NavigationView = findViewById(R.id.nav_view)
+
+        /*if(l.admin==0){
+            navView.menu.removeItem(R.id.nav_list)
+        }
+        if(l.admin==1){
+           // navView.menu.removeItem(R.id.nav)
+        }*/
+        navView.setNavigationItemSelectedListener(this)
 
         var l =  bundle!!.getSerializable("course") as Int
 
@@ -155,5 +161,34 @@ class GetStudents : AppCompatActivity() {
             e.printStackTrace()
             //showToast(e.message.toString())
         }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.nav_students -> {
+                Toast.makeText(this, "Estudiantes", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, CRUDStudent::class.java)
+                startActivity(i)
+                finish()
+            }
+            R.id.nav_courses -> {
+                Toast.makeText(this, "Cursos", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, CRUDCourse::class.java)
+                startActivity(i)
+                finish()
+            }
+            R.id.nav_logout -> {
+                Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, Login::class.java)
+                startActivity(i)
+                finish()
+            }
+            R.id.nav_mat -> {
+                Toast.makeText(this, "Matricula", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, Matricula::class.java)
+                finish()
+            }
+        }
+        return true
     }
 }

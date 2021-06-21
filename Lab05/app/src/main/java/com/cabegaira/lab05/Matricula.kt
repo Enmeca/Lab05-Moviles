@@ -12,6 +12,7 @@ import com.google.android.material.navigation.NavigationView
 import android.content.Intent
 import android.graphics.Canvas
 import android.view.View
+import android.widget.Button
 
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -33,22 +34,24 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
     lateinit var adapter : RecyclerView_Adapter_Enrollment
     lateinit var fab: View
 
+    var insertBtn: Button? = null
+
     lateinit var course:Courses
+
     var position: Int = 0
     internal var dbHelper = DatabaseHelper(this)
 
 
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.courses_list)
+        setContentView(R.layout.matricula_list)
         //to change title of activity
         val actionBar = supportActionBar
         actionBar!!.title = "Matricular Estudiante"
 
-        list = findViewById(R.id.courses_list)
+        list = findViewById(R.id.matricula_list)
         list.layoutManager = LinearLayoutManager(list.context)
         list.setHasFixedSize(true)
-
 
 
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -62,11 +65,7 @@ class Matricula : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
 
         navView.setNavigationItemSelectedListener(this)
 
-        fab = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            val i = Intent(this, AddCourse::class.java)
-            startActivity(i)
-        }
+
 
         listCourses()
 
